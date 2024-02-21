@@ -17,7 +17,7 @@ if (login.signIn()) {
                 "list" : [
                     {"name" : "Consultar CNPJ", "float" : "left"},
                     {"name" : "CNPJ salvo"},
-                    {"name" : "Logout", "float" : "right"}
+                    {"name" : "Logout", "float" : "right", "callback" : login.logout.bind(login)}
                 ]
             }
         );
