@@ -11,7 +11,7 @@ input:invalid {
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.form_search h3 {
+.form_search h3, h5 {
     color: #FFF;
 }
 .form_search input {
@@ -24,5 +24,19 @@ input:invalid {
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
+}
+.gridDiv {
+  position: relative;
+  max-width: 50%;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  background: #3e3e3e;
+}
+
+.success {
+    color: #21b121;
+}
+.fail {
+    color: #ff0216;
 }
 
