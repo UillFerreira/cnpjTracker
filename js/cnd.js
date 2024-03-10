@@ -98,7 +98,6 @@ function getCnd (cnpj) {
 }
 
 function displayForm() {
-    console.log("CND FORM!");
     cnpjInit().then(function () {
         let content = document.getElementById("content");
         let form    = document.createElement ("form");

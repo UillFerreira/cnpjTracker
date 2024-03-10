@@ -31,9 +31,18 @@ async function init () {
                         window[module[mod].name] = module[mod];
                     }
                 }
+                    cndInit(menu);
+            });
+            await import("/cnpjTracker/js/consulta_cnpj.js").then(function (module) {
+                for (var mod in module) {
+                    if (typeof module[mod] == "function") {
+                        // Enabling function to be used in Window context
+                        window[module[mod].name] = module[mod];
+                    }
+                }
+            cnpjConsultaInit(menu);
             });
             // passa o contexto do menu para poder adicionar o item
-            cndInit(menu);
         }, function (err) {
             console.error("Import do menu", err);
         });
