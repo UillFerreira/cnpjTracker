@@ -6,4 +6,5 @@ insert into cnpj__api_serpro (contract_uuid, servico, key, secret, url) values (
 insert into cnpj__api_serpro (contract_uuid, servico, key, secret, url) values ('2f3aa007-c341-4342-b826-08a8873209bf', 'Consulta CNPJ v2 - Mercado Privado - CONTRATO: 178449', 'VIC5_pZAN2ObU2z9zY5M8JIa9kUa', 'qauWN1rgd8P313PYa_DcfcehpKwa', 'https://gateway.apiserpro.serpro.gov.br/consulta-cnpj-df/v2/empresa') ON CONFLICT (contract_uuid) DO NOTHING;
 -- NFE
 insert into cnpj__api_serpro (contract_uuid, servico, key, secret, url) values ('778b2c55-f73c-40ec-b6ee-21eb1f0af935', 'Consulta NFE v2 - CONTRATO: TESTE', '06aef429-a981-3ec5-a1f8-71d38d86481e', '', 'https://gateway.apiserpro.serpro.gov.br/consulta-nfe-df-trial/api/v1/nfe/') ON CONFLICT (contract_uuid) DO NOTHING;
+insert into cnpj__api_serpro (contract_uuid, servico, key, secret, url) values ('f0a6af8f-584f-4650-9702-3e327f2134f2', 'Consulta NFe - direto na faixa - CONTRATO: 180414', 'VIC5_pZAN2ObU2z9zY5M8JIa9kUa', 'qauWN1rgd8P313PYa_DcfcehpKwa', 'https://gateway.apiserpro.serpro.gov.br/consulta-nfe-df/api/v1/nfe/') ON CONFLICT (contract_uuid) DO NOTHING;
 

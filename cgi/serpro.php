@@ -129,4 +129,18 @@ function serproConsultNfe ($url, $bearer, $chave, $codigo) {
 
     return json_decode($response, true);
 }
+function serproConsultNfeCache($chave) {
+    $cache = doSql("SELECT * FROM cnpj__serpro_nfe_select($1)", array($chave));
+    if (!isset($cache->result[0]->cnpj__serpro_nfe_select)) {
+        return;
+    }
+    $cache = json_decode($cache->result[0]->cnpj__serpro_nfe_select);
+    $cache->cache   = true;
+    // Default return
+    $ret = new stdClass();
+    $ret->result = array();
+    $ret->result[0] = new stdClass();
+    $ret->result[0] = $cache;
+    return $ret;
+}
 

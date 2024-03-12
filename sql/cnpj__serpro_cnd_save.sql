@@ -7,7 +7,7 @@ BEGIN
     v_sha1 = encode(digest(p_result->'Certidao'->>'DocumentoPdf', 'sha1'), 'hex');
     INSERT INTO cnpj__data_cnd(cnpj_uuid, sha1, blob, validity) VALUES ((p_result->>'cnpj_uuid')::uuid, v_sha1, (p_result->'Certidao'->>'DocumentoPdf')::bytea, (p_result->'Certidao'->>'DataValidade')::date) RETURNING cnd_uuid INTO v_cnd_uuid;
 
-    INSERT INTO cnpj__serpro_log (cnpj_uuid, status, msg, serpro_uuid) VALUES ((p_result->>'cnpj_uuid')::uuid, p_result->>'Status', p_result->>'Mensagem', v_cnd_uuid); 
+    INSERT INTO cnpj__serpro_log (contract_uuid, key_uuid, msg) VALUES ('90eb2c8c-7d9a-4b60-9871-607a02698536', v_cnd_uuid, COALESCE(p_result->>'Mensagem', '< SEM MSG> - ') || COAESCE(p_result->>'Status'), '<SEM STATUS>'); 
 
     RETURN json_build_object (
         'Status', p_result->>'Status',

@@ -40,7 +40,16 @@ async function init () {
                         window[module[mod].name] = module[mod];
                     }
                 }
-            cnpjConsultaInit(menu);
+                cnpjConsultaInit(menu);
+            });
+            await import("/cnpjTracker/js/consulta_nfe.js").then(function (module) {
+                for (var mod in module) {
+                    if (typeof module[mod] == "function") {
+                        // Enabling function to be used in Window context
+                        window[module[mod].name] = module[mod];
+                    }
+                }
+                nfeConsultaInit(menu);
             });
             // passa o contexto do menu para poder adicionar o item
         }, function (err) {
