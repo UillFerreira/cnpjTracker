@@ -122,9 +122,9 @@
             }
             // Busca as chaves 
             // TESTES
-            $contract_uuid = "dcc06d9c-8434-49f4-a14d-d2a1da361670";
+            //$contract_uuid = "dcc06d9c-8434-49f4-a14d-d2a1da361670";
             // PRODUÇÃO
-            //$contract_uuid = "2f3aa007-c341-4342-b826-08a8873209bf";
+            $contract_uuid = "2f3aa007-c341-4342-b826-08a8873209bf";
             $params = doSql("SELECT * FROM cnpj__serpro_param($1)", array($contract_uuid));
             $url    = $params->result[0]->url;
             // Busca no webservice de autenticação o bearer. Se fizer a requisição repetidas vezes, ele só autera o expired time
