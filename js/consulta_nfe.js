@@ -52,13 +52,20 @@ function openXml () {
     let pdfWindow = window.open(url + `/cnpjTracker/cgi/nf.php?action=nfXml&chave=${chave}`);
     
 }
+function update (table) {
+    call_sql("/cnpjTracker/cgi/nf.php", {"action":"nfeUpdate", "chave": this.chave}, undefined, function(ret) {
+        if (ret["error"] != undefined) {
+            apiError(ret);
+        } else {
+            table.updateRow(ret["result"][0], "chave");
+        }
+    });
+}
 function nfeReturnDisplay (nfeRet) {
     console.log(nfeRet);
     let content = document.getElementById("content");
     let gridDiv = document.createElement("div");
-    apiError(nfeRet, gridDiv);
     gridDiv.setAttribute("class", "gridDiv")
-//cndRet["result"][0]["Mensagem"]
     let divSub = document.createElement("div");
     divSub.setAttribute("class", "gridDiv");
 
@@ -70,9 +77,9 @@ function nfeReturnDisplay (nfeRet) {
         {
             "content": content,
             "caption": "Nfe",
-            "header": ["chave", "Atualizado", "xml"],
+            "header": ["chave", "Atualizado", "xml", "Atualizar"],
             "list": [
-                {"chave": nfeRet["result"][0]["chave"], "Atualizado": emissao, "xml": {"icon": "pdf", "callback": openXml}}
+                {"chave": nfeRet["result"][0]["chave"], "Atualizado": emissao, "xml": {"icon": "bi bi-filetype-xml", "callback": openXml}, "Atualizar": {"icon" : "bi bi-arrow-clockwise", "callback": update}}
             ]
         }
     );

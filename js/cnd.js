@@ -74,7 +74,7 @@ function cnfReturnDisplay (cndRet) {
             "caption": cndRet["Mensagem"],  
             "header": ["CNPJ", "Emissão", "Válidade", "CND"], 
             "list": [
-                {"CNPJ": cndRet["result"][0]["cnpj"], "Emissão": emissao, "Válidade": validade, "CND": {"icon": "pdf", "callback": openPdf}}
+                {"CNPJ": cndRet["result"][0]["cnpj"], "Emissão": emissao, "Válidade": validade, "CND": {"icon": "bi bi-filetype-pdf", "callback": openPdf}}
             ]
         }
     );

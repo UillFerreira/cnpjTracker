@@ -7,7 +7,7 @@ BEGIN
         'chave', chave,
         'atualizado', updated
     ) INTO v_json_ret
-    FROM cnpj__nfe_list AS c;
+    FROM cnpj__nfe_list AS c WHERE chave = p_chave;
 
     RETURN v_json_ret;
 END;
