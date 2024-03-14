@@ -138,6 +138,33 @@
                 break;
             }
             $ret = serproConsultCnpj($url, $bearer, $cnpj, $cnpj_uuid);
-            echo json_encode($ret);
+            if ($ret == null) {
+                $error = new stdClass();
+                $error->error   = "Não achou nenhum CNPJ";
+                echo json_encode($error);
+                break;
+            }
+            if (isset($ret->ni)) {
+                $result = doSql("SELECT * FROM cnpj__serpro_cnpj_save($1)", array(pg_escape_string(json_encode($ret))));
+                $result = json_decode($result->result[0]->cnpj__serpro_cnpj_save);
+
+                // Default return
+                $ret = new stdClass();
+                $ret->result = array();
+                $ret->result[0] = new stdClass();
+                $ret->result[0] = $result;
+                echo json_encode($ret);
+            } else {
+                $error = new stdClass();
+                if (isset($ret[0])) {
+                    $error->error   = $ret[0];
+                } elseif (isset($ret->Mensagem)) {
+                    $error->error       = $ret->Mensagem;
+                    $error->code        = $ret->Status;
+                }else {
+                    $error->error = "Não houve o retorno do documento para o cnpj: " . $cnpj;
+                }
+                echo json_encode($error);
+            }            
             break;
     }
