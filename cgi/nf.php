@@ -175,10 +175,8 @@
                 echo json_encode($ret);
             } else {
                 $error = new stdClass();
-                if (isset($ret->message)) {
-                    $error->error   = $ret->message;
-                    $error->code    = $ret->code;
-                    $error->description     = $ret->description;
+                if (isset($ret[0])) {
+                    $error->error   = $ret[0];
                 } elseif (isset($ret->Mensagem)) {
                     $error->error       = $ret->Mensagem;
                     $error->code        = $ret->Status;
